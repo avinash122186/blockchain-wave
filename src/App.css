@@ -1,7 +1,12 @@
 html{
-  overflow:hidden;  
+  overflow:hidden;
+  max-width: 100%;  
   background-color:mintcream;
-  background-image: url(./img/bg2.jpeg);}
+  background-image: url(./img/bg2.jpeg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 .mainContainer {
   display: flex;
