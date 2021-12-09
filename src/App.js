@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import './App.css';
 import { ethers } from "ethers";
 import abi from './utils/WavePortal.json';
 
 const App = () => {
+  const inputRef = useRef();
   const [currentAccount, setCurrentAccount] = useState("");
   const [allWaves, setAllWaves] = useState([]); 
   const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
@@ -50,6 +51,15 @@ const App = () => {
         });
 
         setAllWaves(wavesCleaned);
+        wavePortalContract.on("NewWave", (from, timestamp, message) => {
+          console.log("NewWave", from, timestamp, message);
+
+          setAllWaves(prevState => [...prevState, {
+            address: from,
+            timestamp: new Date(timestamp * 1000),
+            message: message
+          }]);
+        });
       } else {
         console.log("Ethereum object doesn't exist!")
       }
@@ -94,7 +104,8 @@ const App = () => {
           /*
           * Execute the actual wave from your smart contract
           */
-          const waveTxn = await wavePortalContract.wave("This is another test message");
+          const waveTxn = await wavePortalContract.wave(inputRef.current.value);
+          inputRef.current.value="";
           console.log("Mining...", waveTxn.hash);
   
           await waveTxn.wait();
@@ -102,6 +113,7 @@ const App = () => {
   
           count = await wavePortalContract.getTotalWaves();
           console.log("Retrieved total wave count...", count.toNumber());
+
         } else {
           console.log("Ethereum object doesn't exist!");
         }
@@ -126,13 +138,17 @@ const App = () => {
         </div>
 
         <div className="bio">
-        I am <b>Avinash</b> and I am learning blockchain and it's pretty cool.
-        Connect your Ethereum wallet and wave at me!
+        I am <b>Avinash</b> and I am learning blockchain and it's pretty cool.<br/>
+        Connect your Ethereum wallet and wave at me! 👋
         </div>
 
-        
+        <div className="warning"> 
+        There is a wait time of 15 minutes ⌛ To avoid spamming.
+        </div>
+
+        <input className="messageBox" placeholder="Type your message here...." ref={inputRef}/>
         <button className="waveButton" onClick={wave}>
-          Wave at Me
+          Wave at Me and stand a chance to win some Ethereum 💰.
         </button>
 
         {/*
@@ -140,10 +156,10 @@ const App = () => {
         */}
         {!currentAccount && (
           <button className="waveButton" onClick={connectWallet}>
-            Connect Wallet
+            Connect Wallet 👛
           </button>
         )}
-
+        <div style={{ height: "600px", overflow: "scroll",}}>
         {allWaves.map((wave, index) => {
           return (
             <div key={index} style={{ backgroundColor: "OldLace", marginTop: "16px", padding: "8px" }}>
@@ -152,6 +168,7 @@ const App = () => {
               <div>Message: {wave.message}</div>
             </div>)
         })}
+        </div>
       </div>
     </div>
   );

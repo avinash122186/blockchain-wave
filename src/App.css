@@ -1,3 +1,7 @@
+html { 
+  background-color:mintcream;
+  background-image: url(./img/bg2.jpeg);}
+
 .mainContainer {
   display: flex;
   justify-content: center;
@@ -5,6 +9,12 @@
   margin-top: 64px;
 }
 
+.warning {
+  text-align: center;
+  color: red;
+  margin-top: 2px;
+  padding: 2px
+}
 .dataContainer {
   display: flex;
   flex-direction: column;
@@ -20,7 +30,8 @@
 
 .bio {
   text-align: center;
-  color: gray;
+  color:black;
+  font-size: 20px;
   margin-top: 16px;
 }
 
@@ -32,4 +43,17 @@
   border-color: darkcyan;
   border-radius: 5px;
   
+}
+
+.messageBox {
+  border-color: rgb(230, 245, 28);
+  border-radius: 5px;
+  border: 1;
+  padding: 8px;
+  margin-top: 16px;
+  background-color: darkcyan;
+  color: whitesmoke;
+  font-size: 16px;
+  height: 40px;
+
 }
