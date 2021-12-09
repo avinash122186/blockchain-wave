@@ -159,7 +159,7 @@ const App = () => {
             <b>Connect Wallet</b>
           </button>
         )}
-        <div style={{ height: "600px", overflow: "scroll",}}>
+        <div style={{ height: "600px", overflow: "auto",}}>
         {allWaves.map((wave, index) => {
           return (
             <div key={index} style={{ backgroundColor: "OldLace", marginTop: "16px", padding: "8px" }}>
