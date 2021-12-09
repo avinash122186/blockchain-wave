@@ -168,6 +168,15 @@ const App = () => {
               <div>Message: {wave.message}</div>
             </div>)
         })}
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <div style={{marginTop: "40px"}}></div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         </div>
       </div>
     </div>
