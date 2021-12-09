@@ -139,7 +139,7 @@ const App = () => {
 
         <div className="bio">
         I am <b>Avinash</b> and I am learning blockchain and it's pretty cool.<br/>
-        Connect your Ethereum wallet and wave at me! 👋
+        Connect your Ethereum wallet (Rinkeby Testnet) and wave at me! 👋
         </div>
 
         <div className="warning"> 
@@ -156,7 +156,7 @@ const App = () => {
         */}
         {!currentAccount && (
           <button className="waveButton" onClick={connectWallet}>
-            Connect Wallet 👛
+            <b>Connect Wallet</b>
           </button>
         )}
         <div style={{ height: "600px", overflow: "scroll",}}>

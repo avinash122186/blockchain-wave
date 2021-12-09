@@ -40,6 +40,7 @@ html{
   cursor: pointer;
   margin-top: 16px;
   padding: 8px;
+  font-size: 16px;
   border: 1;
   border-color: darkcyan;
   border-radius: 5px;
